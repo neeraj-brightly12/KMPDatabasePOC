@@ -1,0 +1,95 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ksp)
+
+}
+
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+    
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+    
+    sourceSets {
+        androidMain.dependencies {
+            implementation(libs.compose.uiToolingPreview)
+            implementation(libs.androidx.activity.compose)
+            // Database poc
+            implementation("androidx.room:room-runtime:2.7.0")
+
+        }
+        commonMain.dependencies {
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+//            implementation(libs.compose.uiToolingPreview)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.androidx.lifecycle.runtimeCompose)
+
+            // Database poc
+            implementation("androidx.room:room-runtime:2.7.0")
+             // sqlite driver (for ios )
+            implementation("androidx.sqlite:sqlite-bundled:2.4.0")
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+    }
+}
+
+
+
+android {
+    namespace = "com.brightly.kmpdatabasepoc"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    defaultConfig {
+        applicationId = "com.brightly.kmpdatabasepoc"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    add("kspAndroid", "androidx.room:room-compiler:2.7.0")
+    add("kspIosArm64", "androidx.room:room-compiler:2.7.0")
+    add("kspIosSimulatorArm64", "androidx.room:room-compiler:2.7.0")
+    debugImplementation(libs.compose.uiTooling)
+}
+
+
