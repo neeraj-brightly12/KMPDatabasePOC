@@ -6,8 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.ksp)
-
+    alias(libs.plugins.ksp) // Required for Room annotation processing
 }
 
 kotlin {
@@ -31,9 +30,6 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
-            // Database poc
-            implementation("androidx.room:room-runtime:2.7.0")
-
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -45,10 +41,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            // Database poc
-            implementation("androidx.room:room-runtime:2.7.0")
-             // sqlite driver (for ios )
-            implementation("androidx.sqlite:sqlite-bundled:2.4.0")
+            // Database library from local project - contains all Room infrastructure
+            implementation(project(":kmp-room-core"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -86,9 +80,11 @@ android {
 }
 
 dependencies {
+
     add("kspAndroid", "androidx.room:room-compiler:2.7.0")
     add("kspIosArm64", "androidx.room:room-compiler:2.7.0")
     add("kspIosSimulatorArm64", "androidx.room:room-compiler:2.7.0")
+
     debugImplementation(libs.compose.uiTooling)
 }
 

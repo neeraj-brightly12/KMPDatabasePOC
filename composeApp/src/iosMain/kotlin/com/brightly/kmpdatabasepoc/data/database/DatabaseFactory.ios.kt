@@ -1,27 +1,28 @@
 package com.brightly.kmpdatabasepoc.data.database
 
-import androidx.room.Room
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import kotlinx.cinterop.ExperimentalForeignApi
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSFileManager
-import platform.Foundation.NSUserDomainMask
+import androidx.room.migration.Migration
+import com.brightly.kmp.room.core.DatabaseConfig
+import com.brightly.kmp.room.core.ios.IosDatabaseFactory
 
-actual class DatabaseFactory {
-    @OptIn(ExperimentalForeignApi::class)
+actual class DatabaseFactory : IosDatabaseFactory<AppDatabase>() {
+
     actual fun createDatabase(): AppDatabase {
-        val documentDirectory = NSFileManager.defaultManager.URLForDirectory(
-            directory = NSDocumentDirectory,
-            inDomain = NSUserDomainMask,
-            appropriateForURL = null,
-            create = false,
-            error = null
+        return createDatabase(
+            name = "app.db",
+            migrations = emptyList()
         )
-        val dbFile = requireNotNull(documentDirectory?.path) + "/app.db"
-        return Room.databaseBuilder<AppDatabase>(
-            name = dbFile,
+    }
+
+    override fun createDatabase(
+        name: String,
+        migrations: List<Migration>
+    ): AppDatabase {
+        return buildDatabase(
+            DatabaseConfig(
+                name = name,
+                version = 1,
+                migrations = migrations
+            )
         )
-            .setDriver(BundledSQLiteDriver())
-            .build()
     }
 }

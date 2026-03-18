@@ -1,18 +1,33 @@
 package com.brightly.kmpdatabasepoc.data.database
 
 import android.content.Context
-import androidx.room.Room
+import androidx.room.migration.Migration
+import com.brightly.kmp.room.core.DatabaseConfig
+import com.brightly.kmp.room.core.android.AndroidDatabaseFactory
 
 actual class DatabaseFactory(
-    private val context: Context
-) {
+    context: Context
+) : AndroidDatabaseFactory<AppDatabase>(context) {
 
     actual fun createDatabase(): AppDatabase {
+        return createDatabase(
+            name = "app.db",
+            migrations = emptyList()
+        )
+    }
 
-        return Room.databaseBuilder(
-            context,
+    override fun createDatabase(
+        name: String,
+        migrations: List<Migration>
+    ): AppDatabase {
+        return buildDatabase(
             AppDatabase::class.java,
-            "app.db"
-        ).build()
+            DatabaseConfig(
+                name = name,
+                version = 1,
+                enableLogging = false,
+                migrations = migrations
+            )
+        )
     }
 }

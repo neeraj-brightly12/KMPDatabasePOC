@@ -12,7 +12,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+//        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -26,11 +26,21 @@ dependencyResolutionManagement {
             }
         }
 
-
         mavenCentral()
-        // poc room db
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+
+        // GitHub Packages - kmp-room-core library
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/neeraj-brightly12/KMPDatabasePOC")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR") ?:
+                          providers.gradleProperty("gpr.user").orNull
+                password = System.getenv("GITHUB_TOKEN") ?:
+                          providers.gradleProperty("gpr.token").orNull
+            }
+        }
     }
 }
 
 include(":composeApp")
+include(":kmp-room-core")
