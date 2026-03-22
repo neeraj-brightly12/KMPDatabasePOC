@@ -60,7 +60,7 @@ android {
 
 // Publishing configuration - GitHub Packages
 group = "com.brightly"
-version = "1.0.1"
+version = "1.0.2"
 
 publishing {
     repositories {

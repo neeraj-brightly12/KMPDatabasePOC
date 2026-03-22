@@ -43,4 +43,4 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":kmp-room-core")
+//include(":kmp-room-core")

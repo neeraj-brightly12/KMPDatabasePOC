@@ -41,8 +41,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            // Database library from local project - contains all Room infrastructure
-            implementation(project(":kmp-room-core"))
+            // Database library - use local project or published version
+//           implementation(project(":kmp-room-core"))
+            // To use published version:
+        implementation("com.brightly:kmp-room-core:1.0.2")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

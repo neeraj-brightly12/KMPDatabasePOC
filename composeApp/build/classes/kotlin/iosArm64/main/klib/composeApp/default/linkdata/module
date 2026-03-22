@@ -1,0 +1,2 @@
+
+<KMPDatabasePOC:composeApp>:com.brightly.kmpdatabasepoc:$com.brightly.kmpdatabasepoc.data.dao:)com.brightly.kmpdatabasepoc.data.database:'com.brightly.kmpdatabasepoc.data.entity:+com.brightly.kmpdatabasepoc.data.repository:com.brightly.kmpdatabasepoc.ui:%com.brightly.kmpdatabasepoc.viewmodel:-kmpdatabasepoc.composeapp.generated.resources

@@ -53,21 +53,28 @@ commonMain.dependencies {
 **Note:** You'll need a GitHub Personal Access Token with `read:packages` permission.
 See [PUBLISHING_QUICK_START.md](PUBLISHING_QUICK_START.md) for detailed setup.
 
-### Important: KSP Configuration Required
+### ⚠️ CRITICAL: KSP Configuration Required
 
-**Your app still needs KSP** to process Room annotations:
+**Your app MUST include KSP** to process Room annotations for your entities and DAOs:
 
 ```kotlin
+// build.gradle.kts (app module)
 plugins {
-    id("com.google.devtools.ksp") version "2.1.20-1.0.31"
+    alias(libs.plugins.ksp) // or id("com.google.devtools.ksp") version "2.1.20-1.0.31"
 }
 
 dependencies {
+    // Published library
+    implementation("com.brightly:kmp-room-core:1.0.2")
+
+    // ✅ REQUIRED: KSP dependencies for your app's Room entities
     add("kspAndroid", "androidx.room:room-compiler:2.7.0")
     add("kspIosArm64", "androidx.room:room-compiler:2.7.0")
     add("kspIosSimulatorArm64", "androidx.room:room-compiler:2.7.0")
 }
 ```
+
+**Why?** The library provides infrastructure, but your app defines entities (`@Entity`), DAOs (`@Dao`), and databases (`@Database`) that need KSP annotation processing to generate implementation code. Without KSP, Room cannot generate the necessary code and your build will fail.
 
 ## Publishing
 

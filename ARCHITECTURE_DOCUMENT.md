@@ -20,6 +20,8 @@
 
 This project implements a **Clean Architecture** approach with **MVVM (Model-View-ViewModel)** pattern for a Kotlin Multiplatform (KMP) application using Room Database for data persistence.
 
+**Library Usage:** This project uses the published `kmp-room-core` library (v1.0.2+) from GitHub Packages, which provides platform abstractions and utilities for Room Database implementation.
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     Presentation Layer                       │
@@ -67,17 +69,23 @@ This project implements a **Clean Architecture** approach with **MVVM (Model-Vie
 
 ```
 KMPDatabasePOC/
-├── composeApp/
+├── kmp-room-core/                              # Published library (v1.0.2+)
+│   ├── Platform abstractions
+│   ├── Database utilities
+│   └── Migration helpers
+├── composeApp/                                 # Main application
 │   ├── src/
 │   │   ├── commonMain/kotlin/com/brightly/kmpdatabasepoc/
 │   │   │   ├── data/
 │   │   │   │   ├── dao/
-│   │   │   │   │   └── UserDao.kt              # Data Access Object
+│   │   │   │   │   ├── UserDao.kt              # Data Access Object
+│   │   │   │   │   └── ProductDao.kt           # Product DAO
 │   │   │   │   ├── database/
 │   │   │   │   │   ├── AppDatabase.kt          # Database definition (expect)
 │   │   │   │   │   └── DatabaseFactory.kt      # Factory (expect)
 │   │   │   │   ├── entity/
-│   │   │   │   │   └── UserEntity.kt           # Data model
+│   │   │   │   │   ├── UserEntity.kt           # User data model
+│   │   │   │   │   └── ProductEntity.kt        # Product data model
 │   │   │   │   └── repository/
 │   │   │   │       └── UserRepository.kt       # Repository pattern
 │   │   │   ├── ui/
@@ -94,9 +102,33 @@ KMPDatabasePOC/
 │   │       └── data/database/
 │   │           └── DatabaseFactory.ios.kt      # iOS implementation
 │   └── build.gradle.kts                        # Build configuration
+│       # Dependencies:
+│       # - implementation("com.brightly:kmp-room-core:1.0.2")
+│       # - KSP required for Room annotation processing
 ├── gradle/
 │   └── libs.versions.toml                      # Version catalog
 └── gradle.properties                            # Gradle properties
+```
+
+### Important Build Configuration
+
+**⚠️ Critical:** Even when using the published `kmp-room-core` library, **KSP (Kotlin Symbol Processing) is REQUIRED** because your app defines its own Room entities (`UserEntity`, `ProductEntity`) and DAOs that need annotation processing.
+
+```kotlin
+// composeApp/build.gradle.kts
+plugins {
+    alias(libs.plugins.ksp) // ✅ REQUIRED for Room annotation processing
+}
+
+dependencies {
+    // Published library
+    implementation("com.brightly:kmp-room-core:1.0.2")
+
+    // ✅ KSP dependencies MUST be included
+    add("kspAndroid", "androidx.room:room-compiler:2.7.0")
+    add("kspIosArm64", "androidx.room:room-compiler:2.7.0")
+    add("kspIosSimulatorArm64", "androidx.room:room-compiler:2.7.0")
+}
 ```
 
 ---
