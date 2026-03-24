@@ -1,0 +1,76 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  build-release:
+    name: Build Release
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build release APK
+      run: ./gradlew :composeApp:assembleRelease
+
+    - name: Build release AAB
+      run: ./gradlew :composeApp:bundleRelease
+
+    - name: Build iOS Framework
+      run: ./gradlew :composeApp:linkReleaseFrameworkIosArm64
+
+    - name: Sign Android APK
+      uses: r0adkll/sign-android-release@v1
+      if: false  # Enable when you have signing keys
+      with:
+        releaseDirectory: composeApp/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-apk
+        path: composeApp/build/outputs/apk/release/*.apk
+        retention-days: 30
+
+    - name: Upload AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-aab
+        path: composeApp/build/outputs/bundle/release/*.aab
+        retention-days: 30
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          composeApp/build/outputs/apk/release/*.apk
+          composeApp/build/outputs/bundle/release/*.aab
+        draft: true
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

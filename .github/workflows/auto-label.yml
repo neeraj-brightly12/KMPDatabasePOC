@@ -1,0 +1,134 @@
+name: Auto Label
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-pr:
+    name: Auto Label PR
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+    - name: Label based on files changed
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: files } = await github.rest.pulls.listFiles({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+          });
+
+          const labels = new Set();
+
+          for (const file of files) {
+            // UI related files
+            if (file.filename.includes('/ui/') || file.filename.includes('compose')) {
+              labels.add('ui');
+            }
+
+            // Database related files
+            if (file.filename.includes('/database/') || file.filename.includes('/dao/') ||
+                file.filename.includes('/entity/')) {
+              labels.add('database');
+            }
+
+            // ViewModel files
+            if (file.filename.includes('/viewmodel/')) {
+              labels.add('viewmodel');
+            }
+
+            // Repository files
+            if (file.filename.includes('/repository/')) {
+              labels.add('repository');
+            }
+
+            // Test files
+            if (file.filename.includes('Test.kt') || file.filename.includes('/test/')) {
+              labels.add('tests');
+            }
+
+            // Documentation
+            if (file.filename.endsWith('.md')) {
+              labels.add('documentation');
+            }
+
+            // Build files
+            if (file.filename.includes('.gradle') || file.filename.includes('gradle')) {
+              labels.add('build');
+            }
+
+            // Android specific
+            if (file.filename.includes('androidMain') || file.filename.includes('AndroidManifest')) {
+              labels.add('android');
+            }
+
+            // iOS specific
+            if (file.filename.includes('iosMain') || file.filename.includes('.swift')) {
+              labels.add('ios');
+            }
+          }
+
+          if (labels.size > 0) {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: Array.from(labels)
+            });
+          }
+
+  label-issue:
+    name: Auto Label Issue
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues'
+
+    steps:
+    - name: Label based on issue content
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const issue = context.payload.issue;
+          const title = issue.title.toLowerCase();
+          const body = (issue.body || '').toLowerCase();
+          const labels = [];
+
+          // Bug keywords
+          if (title.includes('bug') || title.includes('error') || title.includes('crash') ||
+              body.includes('error') || body.includes('crash')) {
+            labels.push('bug');
+          }
+
+          // Feature keywords
+          if (title.includes('feature') || title.includes('add') ||
+              body.includes('feature request')) {
+            labels.push('enhancement');
+          }
+
+          // Documentation keywords
+          if (title.includes('doc') || body.includes('documentation')) {
+            labels.push('documentation');
+          }
+
+          // Question keywords
+          if (title.includes('how') || title.includes('?') || body.includes('question')) {
+            labels.push('question');
+          }
+
+          if (labels.length > 0) {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: labels
+            });
+          }

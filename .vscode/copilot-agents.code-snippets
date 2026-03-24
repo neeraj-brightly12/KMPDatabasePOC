@@ -1,0 +1,85 @@
+{
+  "Code Review Agent": {
+    "prefix": "agent-review",
+    "body": [
+      "@workspace Using the guidelines from .github/agents/code-reviewer.md,",
+      "review ${1:filename} and provide:",
+      "- Correctness issues",
+      "- Security concerns",
+      "- Best practices violations",
+      "- Kotlin/Compose-specific improvements"
+    ],
+    "description": "Invoke code review agent"
+  },
+  "Bug Hunter Agent": {
+    "prefix": "agent-bugs",
+    "body": [
+      "@workspace Using .github/agents/bug-hunter.md,",
+      "scan ${1:filename} for:",
+      "- Logic errors and edge cases",
+      "- Concurrency issues",
+      "- Memory leaks",
+      "- State management problems"
+    ],
+    "description": "Invoke bug hunter agent"
+  },
+  "Test Generator Agent": {
+    "prefix": "agent-tests",
+    "body": [
+      "@workspace Using .github/agents/test-generator.md,",
+      "generate comprehensive tests for ${1:filename}:",
+      "- Unit tests",
+      "- Edge cases",
+      "- Error scenarios",
+      "- Mock setup"
+    ],
+    "description": "Invoke test generator agent"
+  },
+  "Performance Analyzer Agent": {
+    "prefix": "agent-perf",
+    "body": [
+      "@workspace Using .github/agents/performance-analyzer.md,",
+      "analyze ${1:filename} for:",
+      "- Performance bottlenecks",
+      "- Memory issues",
+      "- Recomposition problems",
+      "- Database optimization"
+    ],
+    "description": "Invoke performance analyzer agent"
+  },
+  "Security Auditor Agent": {
+    "prefix": "agent-security",
+    "body": [
+      "@workspace Using .github/agents/security-auditor.md,",
+      "audit ${1:filename} for:",
+      "- Security vulnerabilities",
+      "- Data exposure risks",
+      "- OWASP compliance",
+      "- Input validation"
+    ],
+    "description": "Invoke security auditor agent"
+  },
+  "Documentation Writer Agent": {
+    "prefix": "agent-docs",
+    "body": [
+      "@workspace Using .github/agents/documentation-writer.md,",
+      "create documentation for ${1:filename}:",
+      "- KDoc comments",
+      "- Usage examples",
+      "- Architecture notes"
+    ],
+    "description": "Invoke documentation writer agent"
+  },
+  "Code Optimizer Agent": {
+    "prefix": "agent-optimize",
+    "body": [
+      "@workspace Using .github/agents/code-optimizer.md,",
+      "optimize ${1:filename} for:",
+      "- Code quality",
+      "- Performance",
+      "- Maintainability",
+      "- Kotlin idioms"
+    ],
+    "description": "Invoke code optimizer agent"
+  }
+}
