@@ -163,15 +163,17 @@ dependencies {
 
 The app uses credentials from `~/.gradle/gradle.properties`:
 ```properties
-gpr.user=neeraj-brightly12
+gpr.user=your-github-username
 gpr.token=your_github_personal_access_token
 ```
 
-**For other developers:**
-1. Create their own GitHub Personal Access Token with `read:packages` permission
-2. Add to their `~/.gradle/gradle.properties`:
+⚠️ **IMPORTANT**: Never commit actual tokens to Git!
+
+**Setup Instructions:**
+1. Create a GitHub Personal Access Token with `read:packages` permission at https://github.com/settings/tokens
+2. Add to your local `~/.gradle/gradle.properties`:
    ```properties
-   gpr.user=their-github-username
+   gpr.user=your-github-username
    gpr.token=their-github-token
    ```
 
