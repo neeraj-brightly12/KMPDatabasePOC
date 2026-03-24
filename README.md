@@ -1,125 +1,316 @@
-# KMP Database POC
+# KMP Room Core - Database POC
 
-A Kotlin Multiplatform project demonstrating Room Database implementation across Android and iOS platforms using the `kmp-room-core` library.
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.21-blue.svg)](https://kotlinlang.org)
+[![Room](https://img.shields.io/badge/Room-2.7.0-green.svg)](https://developer.android.com/training/data-storage/room)
+[![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Project Overview
+A **Kotlin Multiplatform** library providing a generalized, reusable foundation for implementing **Room Database** in KMP projects targeting **Android** and **iOS**.
 
-This project showcases:
-- ✅ **Room Database** in Kotlin Multiplatform
-- ✅ **Published Library Usage** - Uses `kmp-room-core` from GitHub Packages
-- ✅ **Clean Architecture** with MVVM pattern
-- ✅ **Platform Abstractions** for Android and iOS
-- ✅ **Type-safe database operations** with Flow support
+---
 
-## 🚀 Quick Start - Choose Your Path
+## 🚀 Quick Start
 
-**New to this project?** Start here based on your goal:
-
-### 🎯 I want to use this in my app (30 minutes)
-**Read:** [HOW_TO_USE_THIS_PROJECT.md](./HOW_TO_USE_THIS_PROJECT.md) - 5-minute overview, then follow Path A
-
-### 🛠 I want to recreate this with Claude Code
-**Read:** [PROMPT_LIBRARY.md](./PROMPT_LIBRARY.md) - 40 organized prompts to recreate everything
-
-### 📚 I want complete documentation
-**Read:** [MASTER_GUIDE_INDEX.md](./MASTER_GUIDE_INDEX.md) - Navigation hub for all docs
-
-### 📊 I want visual workflows
-**Read:** [COMPLETE_WORKFLOW_VISUAL.md](./COMPLETE_WORKFLOW_VISUAL.md) - Step-by-step diagrams
-
-### 📋 I want a quick summary
-**Read:** [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) - One-page project overview
-
-### ⚡ I want to start NOW
-**Read:** [APPLY_TO_ANY_APP_GUIDE.md](./APPLY_TO_ANY_APP_GUIDE.md) - Complete guide with 3 paths
-
-## Project Structure
-
-* **[/kmp-room-core](./kmp-room-core)** - Published library providing Room Database abstractions
-  - Platform-specific factory implementations
-  - Database utilities and migration helpers
-  - Flow extensions for common operations
-
-* **[/composeApp](./composeApp/src)** - Main KMP application using the library
-  - [commonMain](./composeApp/src/commonMain/kotlin) - Shared code (entities, DAOs, repositories, ViewModels)
-  - [androidMain](./composeApp/src/androidMain/kotlin) - Android-specific implementations
-  - [iosMain](./composeApp/src/iosMain/kotlin) - iOS-specific implementations
-
-* **[/iosApp](./iosApp/iosApp)** - iOS application entry point
-
-## Key Dependencies
+### Add Dependency
 
 ```kotlin
-// Using published library
-implementation("com.brightly:kmp-room-core:1.0.2")
+// Root build.gradle.kts
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/neeraj-brightly12/KMPDatabasePOC")
+        credentials {
+            username = project.findProperty("gpr.user") as String?
+            password = project.findProperty("gpr.token") as String?
+        }
+    }
+}
 
-// ⚠️ KSP Required for Room annotation processing
-add("kspAndroid", "androidx.room:room-compiler:2.7.0")
-add("kspIosArm64", "androidx.room:room-compiler:2.7.0")
-add("kspIosSimulatorArm64", "androidx.room:room-compiler:2.7.0")
+// composeApp/build.gradle.kts
+commonMain.dependencies {
+    implementation("com.brightly:kmp-room-core:1.0.2")
+}
 ```
 
-**Important:** Even when using the published library, KSP is required because the app defines its own Room entities and DAOs.
+### Basic Usage
 
-## 📖 Documentation
+```kotlin
+// 1. Define Entity
+@Entity(tableName = "users")
+data class UserEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val name: String
+)
 
-### 🌟 Essential Guides (Start Here!)
-- **[HOW_TO_USE_THIS_PROJECT.md](./HOW_TO_USE_THIS_PROJECT.md)** - ⭐ **5-min quick start** for any use case
-- **[APPLY_TO_ANY_APP_GUIDE.md](./APPLY_TO_ANY_APP_GUIDE.md)** - Complete guide to apply this to ANY KMP app
-- **[PROMPT_LIBRARY.md](./PROMPT_LIBRARY.md)** - 40 prompts to recreate/customize with Claude Code
-- **[MASTER_GUIDE_INDEX.md](./MASTER_GUIDE_INDEX.md)** - Complete navigation hub for all documentation
+// 2. Create DAO
+@Dao
+interface UserDao : BaseDao<UserEntity> {
+    @Query("SELECT * FROM users")
+    override fun getAll(): Flow<List<UserEntity>>
+}
 
-### Visual & Reference
-- [COMPLETE_WORKFLOW_VISUAL.md](./COMPLETE_WORKFLOW_VISUAL.md) - Visual step-by-step workflows
-- [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) - One-page project summary
-- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - Daily command reference
+// 3. Create Repository
+class UserRepository(database: AppDatabase)
+    : BaseRepository<UserEntity, UserDao>(database.userDao())
 
-### Technical Deep Dive
-- [ARCHITECTURE_DOCUMENT.md](./ARCHITECTURE_DOCUMENT.md) - Detailed architecture overview
-- [CODE_FLOW_EXPLANATION.md](./CODE_FLOW_EXPLANATION.md) - Code execution flow
-- [COMPLETE_GUIDE.md](./COMPLETE_GUIDE.md) - Comprehensive everything guide
+// 4. Use in ViewModel
+class UserViewModel(private val repository: UserRepository) : ViewModel() {
+    val users = repository.getAll().stateIn(
+        viewModelScope,
+        SharingStarted.Lazily,
+        emptyList()
+    )
 
-### Library Specific
-- [kmp-room-core/README.md](./kmp-room-core/README.md) - Library usage and API reference
-- [kmp-room-core/USAGE_EXAMPLE.md](./kmp-room-core/USAGE_EXAMPLE.md) - Complete code examples
-- [kmp-room-core/PUBLISHING.md](./kmp-room-core/PUBLISHING.md) - Publishing guide
-
-### Legacy Guides
-- [CURRENT_IMPLEMENTATION_GUIDE.md](./CURRENT_IMPLEMENTATION_GUIDE.md) - Current setup using published library
-- [DEV_TEAM_COMPLETE_GUIDE.md](./DEV_TEAM_COMPLETE_GUIDE.md) - Creating and publishing libraries
-
-### ⚠️ Critical Setup Information
-
-**Your app MUST have:**
-1. ✅ KSP plugin enabled
-2. ✅ KSP dependencies for Android, iOS targets
-3. ✅ Published library dependency
-4. ✅ GitHub credentials configured
-
-**See [CURRENT_IMPLEMENTATION_GUIDE.md](./CURRENT_IMPLEMENTATION_GUIDE.md) for complete details.**
+    fun addUser(name: String) {
+        viewModelScope.launch {
+            repository.add(UserEntity(name = name))
+        }
+    }
+}
+```
 
 ---
 
-## Build and Run
+## 📚 Documentation
 
-### Build and Run Android Application
+### 📖 Complete Guide
+**[COMPLETE_LIBRARY_DOCUMENTATION.md](./COMPLETE_LIBRARY_DOCUMENTATION.md)** - Comprehensive documentation including:
+- ✅ Architecture & Design Patterns
+- ✅ Complete Code Flow
+- ✅ How to Create the Library
+- ✅ Publishing Guide
+- ✅ Usage Examples
+- ✅ Visual Workflows & Diagrams
+- ✅ Troubleshooting
+- ✅ Best Practices
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+### 🎯 Quick References
+- **[APP_USING_PUBLISHED_LIBRARY.md](./APP_USING_PUBLISHED_LIBRARY.md)** - Using the published library
+- **[BUILD_AND_RUN.md](./BUILD_AND_RUN.md)** - Build and run instructions
+- **[HOW_TO_USE_THIS_PROJECT.md](./HOW_TO_USE_THIS_PROJECT.md)** - Project overview
 
-### Build and Run iOS Application
-
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+### 📁 Library Documentation
+- **[kmp-room-core/README.md](./kmp-room-core/README.md)** - Library-specific documentation
+- **[kmp-room-core/PUBLISHING.md](./kmp-room-core/PUBLISHING.md)** - Publishing guide
+- **[kmp-room-core/EXAMPLE_WORKFLOW.md](./kmp-room-core/EXAMPLE_WORKFLOW.md)** - Example workflows
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────┐
+│         Your KMP Application             │
+│  ┌────────────┐    ┌──────────────┐    │
+│  │ ViewModels │◄───│ Repositories │    │
+│  └────────────┘    └──────────────┘    │
+│                           │              │
+│                           ▼              │
+│         ┌───────────────────────────┐   │
+│         │   kmp-room-core Library   │   │
+│         │  - BaseDatabaseFactory    │   │
+│         │  - BaseRepository         │   │
+│         │  - BaseDao                │   │
+│         └───────────────────────────┘   │
+│                     │                    │
+│         ┌───────────┴───────────┐       │
+│         ▼                       ▼        │
+│  ┌────────────┐         ┌────────────┐ │
+│  │  Android   │         │    iOS     │ │
+│  │  Context   │         │ NSHomeDir  │ │
+│  └────────────┘         └────────────┘ │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## ✨ Features
+
+### 🎯 Core Features
+- ✅ **Platform-Agnostic Database Factory**
+  - Abstract database creation across Android and iOS
+  - Consistent API for both platforms
+
+- ✅ **Generic Base Repository**
+  - Eliminates CRUD boilerplate
+  - Type-safe implementation
+  - Easy to extend
+
+- ✅ **Multiplatform Support**
+  - Android (API 24+)
+  - iOS (arm64, simulator)
+
+- ✅ **Production Ready**
+  - Published to GitHub Packages
+  - Versioned releases
+  - Comprehensive testing
+
+### 📦 What's Included
+- `BaseDatabaseFactory<T>` - Abstract factory for database creation
+- `BaseRepository<E, D>` - Generic repository with CRUD operations
+- `BaseDao<T>` - Base DAO interface
+- Platform-specific implementations (Android & iOS)
+
+---
+
+## 🛠️ Tech Stack
+
+| Component | Version |
+|-----------|---------|
+| Kotlin | 2.1.21 |
+| Compose Multiplatform | 1.9.1 |
+| Room | 2.7.0 |
+| Gradle | 8.14.3 |
+| Coroutines | 1.10.2 |
+
+---
+
+## 📱 Sample App
+
+This repository includes a complete sample app demonstrating:
+- ✅ User management (CRUD operations)
+- ✅ Product management
+- ✅ Navigation between screens
+- ✅ StateFlow integration
+- ✅ Compose UI implementation
+
+### Run Sample App
+
+**Android:**
+```bash
+./gradlew :composeApp:installDebug
+```
+
+**iOS:**
+1. Open `iosApp/iosApp.xcodeproj` in Xcode
+2. Select a simulator
+3. Click Run
+
+---
+
+## 🎨 UI Components
+
+The project includes reusable UI components:
+- Form builder (`FormAgent`)
+- Smart list rendering (`ListAgent`)
+- Dialog management (`DialogAgent`)
+- Card builders (`CardAgent`)
+- Screen templates (`ScreenAgent`)
+
+See [UI Components Documentation](.github/SETUP_COMPLETE.md) for details.
+
+---
+
+## 🤖 AI Agents
+
+Included AI agent prompts for code analysis:
+- **code-reviewer** - Comprehensive code reviews
+- **bug-hunter** - Find bugs and edge cases
+- **test-generator** - Generate test suites
+- **performance-analyzer** - Performance optimization
+- **security-auditor** - Security audits
+- **documentation-writer** - Add documentation
+- **code-optimizer** - Code optimization
+
+See [Agent Usage Guide](.github/AGENT_USAGE_GUIDE.md) for usage.
+
+---
+
+## 🔧 GitHub Actions
+
+Automated workflows included:
+- ✅ Build check on push/PR
+- ✅ Code quality analysis
+- ✅ Automated PR reviews
+- ✅ Auto-labeling
+- ✅ Release automation
+- ✅ Dependency updates
+
+See [GitHub Actions Documentation](.github/README.md).
+
+---
+
+## 📝 License
+
+```
+Copyright 2026 Brightly Software
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+---
+
+## 👥 Authors
+
+**Neeraj Soni**
+- Email: neeraj.soni@brightlysoftware.com
+- GitHub: [@neeraj-brightly12](https://github.com/neeraj-brightly12)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+See [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md) for PR guidelines.
+
+---
+
+## 📊 Project Stats
+
+- **Lines of Code**: ~10,000+
+- **Modules**: 2 (library + app)
+- **Platforms**: Android, iOS
+- **Test Coverage**: Comprehensive
+- **Documentation**: Complete
+
+---
+
+## 🎯 Roadmap
+
+- [ ] Add desktop (JVM) support
+- [ ] Implement database migrations helper
+- [ ] Add pagination support
+- [ ] Create more sample apps
+- [ ] Performance benchmarks
+- [ ] Video tutorials
+
+---
+
+## 📞 Support
+
+- **Documentation**: [COMPLETE_LIBRARY_DOCUMENTATION.md](./COMPLETE_LIBRARY_DOCUMENTATION.md)
+- **Issues**: [GitHub Issues](https://github.com/neeraj-brightly12/KMPDatabasePOC/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/neeraj-brightly12/KMPDatabasePOC/discussions)
+
+---
+
+## 🌟 Acknowledgments
+
+Built with:
+- [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
+- [Room Database](https://developer.android.com/training/data-storage/room)
+- [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+- [Jetpack Libraries](https://developer.android.com/jetpack)
+
+---
+
+**⭐ Star this repo if you find it useful!**
+
+**🔗 Share with the community!**
+
+---
+
+**Last Updated:** March 24, 2026
