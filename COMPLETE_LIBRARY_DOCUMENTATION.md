@@ -843,6 +843,44 @@ gpr.token=your_github_token_here
 
 ### Step 1: Add Maven Repository
 
+You can configure the repository in **either** `settings.gradle.kts` (recommended for KMP) **or** `build.gradle.kts`.
+
+#### Option A: settings.gradle.kts (Recommended for KMP)
+
+**settings.gradle.kts:**
+```kotlin
+pluginManagement {
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+
+        // GitHub Packages - kmp-room-core library
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/neeraj-brightly12/KMPDatabasePOC")
+            credentials {
+                // Tries environment variables first (useful for CI/CD)
+                // Falls back to gradle.properties (for local development)
+                username = System.getenv("GITHUB_ACTOR") ?:
+                          providers.gradleProperty("gpr.user").orNull
+                password = System.getenv("GITHUB_TOKEN") ?:
+                          providers.gradleProperty("gpr.token").orNull
+            }
+        }
+    }
+}
+```
+
+#### Option B: Root build.gradle.kts (Alternative)
+
 **Root build.gradle.kts:**
 ```kotlin
 allprojects {
@@ -850,10 +888,13 @@ allprojects {
         google()
         mavenCentral()
         maven {
+            name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/neeraj-brightly12/KMPDatabasePOC")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GPR_USER")
-                password = project.findProperty("gpr.token") as String? ?: System.getenv("GPR_TOKEN")
+                username = System.getenv("GITHUB_ACTOR") ?:
+                          project.findProperty("gpr.user") as String?
+                password = System.getenv("GITHUB_TOKEN") ?:
+                          project.findProperty("gpr.token") as String?
             }
         }
     }
@@ -864,17 +905,58 @@ allprojects {
 
 **composeApp/build.gradle.kts:**
 ```kotlin
-commonMain.dependencies {
-    implementation("com.brightly:kmp-room-core:1.0.2")
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation("com.brightly:kmp-room-core:1.0.2")
+        }
+    }
 }
 ```
 
 ### Step 3: Setup Credentials
 
+You have **two options** for providing credentials:
+
+#### Option A: Local Development (gradle.properties)
+
 Add to `~/.gradle/gradle.properties`:
 ```properties
 gpr.user=your-github-username
-gpr.token=your_github_token_with_read_packages_permission
+gpr.token=your_github_personal_access_token
+```
+
+**To create token:**
+1. Go to https://github.com/settings/tokens
+2. Generate new token (classic)
+3. Select scope: `read:packages`
+4. Copy token
+
+⚠️ **Security:** Never commit gradle.properties to git!
+
+#### Option B: Environment Variables (CI/CD or Local)
+
+**On macOS/Linux:**
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+export GITHUB_ACTOR="your-github-username"
+export GITHUB_TOKEN="your_github_personal_access_token"
+
+# Then reload
+source ~/.zshrc
+```
+
+**On Windows (PowerShell):**
+```powershell
+$env:GITHUB_ACTOR="your-github-username"
+$env:GITHUB_TOKEN="your_github_personal_access_token"
+```
+
+**For CI/CD (GitHub Actions):**
+```yaml
+env:
+  GITHUB_ACTOR: ${{ github.actor }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Step 4: Sync Project
@@ -882,6 +964,32 @@ gpr.token=your_github_token_with_read_packages_permission
 ```bash
 ./gradlew build
 ```
+
+**If sync fails:**
+```bash
+# Clear cache and retry
+./gradlew build --refresh-dependencies
+```
+
+---
+
+## Credential Lookup Order
+
+The configuration checks credentials in this order:
+
+1. **Environment Variables** (checked first)
+   - `GITHUB_ACTOR` for username
+   - `GITHUB_TOKEN` for password
+
+2. **Gradle Properties** (fallback)
+   - `gpr.user` from ~/.gradle/gradle.properties
+   - `gpr.token` from ~/.gradle/gradle.properties
+
+**Why this approach?**
+- ✅ Works locally with gradle.properties
+- ✅ Works in CI/CD with environment variables
+- ✅ No credentials in source code
+- ✅ Flexible for different environments
 
 ---
 
