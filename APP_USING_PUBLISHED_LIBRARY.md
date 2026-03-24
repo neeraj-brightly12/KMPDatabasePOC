@@ -42,7 +42,7 @@ implementation("com.brightly:kmp-room-core:1.0.1")
 ### 3. gradle/libs.versions.toml ✅
 **KSP plugin enabled:**
 ```kotlin
-ksp = { id = "com.google.devtools.ksp", version = "2.1.20-1.0.31" }
+ksp = { id = "com.google.devtools.ksp"; version = "2.1.20-1.0.31" }
 ```
 
 ---
@@ -161,10 +161,7 @@ dependencies {
 
 ## Credentials Setup
 
-The app uses credentials from `~/.gradle/gradle.properties`:
-```properties
 
-```
 
 **For other developers:**
 1. Create their own GitHub Personal Access Token with `read:packages` permission
