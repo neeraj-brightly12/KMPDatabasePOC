@@ -163,8 +163,8 @@ dependencies {
 
 The app uses credentials from `~/.gradle/gradle.properties`:
 ```properties
-gpr.user= ""
-gpr.token=""
+#gpr.user= ""
+#gpr.token=""
 ```
 
 **For other developers:**
