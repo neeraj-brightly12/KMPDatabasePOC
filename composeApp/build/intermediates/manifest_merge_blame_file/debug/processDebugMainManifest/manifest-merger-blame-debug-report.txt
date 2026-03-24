@@ -9,22 +9,22 @@
 9        android:targetSdkVersion="36" />
 10
 11    <permission
-11-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
+11-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
 12        android:name="com.brightly.kmpdatabasepoc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-12-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
+12-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
 13        android:protectionLevel="signature" />
-13-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
+13-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
 14
 15    <uses-permission android:name="com.brightly.kmpdatabasepoc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-15-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
-15-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
+15-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
+15-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
 16
 17    <application
 17-->/Users/neerajsoni/Documents/CMP-Spikes-Code/KMPDatabasePOC/composeApp/src/androidMain/AndroidManifest.xml:4:5-20:19
 18        android:allowBackup="true"
 18-->/Users/neerajsoni/Documents/CMP-Spikes-Code/KMPDatabasePOC/composeApp/src/androidMain/AndroidManifest.xml:5:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/98474868bc7d6d846736bade15ca7ddf/transformed/core-1.16.0/AndroidManifest.xml:28:18-86
+19-->[androidx.core:core:1.16.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/153bd189c564858e3f44f5d979642ed9/transformed/core-1.16.0/AndroidManifest.xml:28:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:icon="@mipmap/ic_launcher"
@@ -57,96 +57,96 @@
 36        </activity>
 37
 38        <provider
-38-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/5a3033cb1e4ab555807cec48f900e046/transformed/library-release/AndroidManifest.xml:8:9-13:20
+38-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d1951a3c259c2cd67fa86e741c64c4bc/transformed/library-release/AndroidManifest.xml:8:9-13:20
 39            android:name="org.jetbrains.compose.resources.AndroidContextProvider"
-39-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/5a3033cb1e4ab555807cec48f900e046/transformed/library-release/AndroidManifest.xml:9:13-82
+39-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d1951a3c259c2cd67fa86e741c64c4bc/transformed/library-release/AndroidManifest.xml:9:13-82
 40            android:authorities="com.brightly.kmpdatabasepoc.resources.AndroidContextProvider"
-40-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/5a3033cb1e4ab555807cec48f900e046/transformed/library-release/AndroidManifest.xml:10:13-84
+40-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d1951a3c259c2cd67fa86e741c64c4bc/transformed/library-release/AndroidManifest.xml:10:13-84
 41            android:enabled="true"
-41-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/5a3033cb1e4ab555807cec48f900e046/transformed/library-release/AndroidManifest.xml:11:13-35
+41-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d1951a3c259c2cd67fa86e741c64c4bc/transformed/library-release/AndroidManifest.xml:11:13-35
 42            android:exported="false" >
-42-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/5a3033cb1e4ab555807cec48f900e046/transformed/library-release/AndroidManifest.xml:12:13-37
+42-->[org.jetbrains.compose.components:components-resources-android:1.9.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d1951a3c259c2cd67fa86e741c64c4bc/transformed/library-release/AndroidManifest.xml:12:13-37
 43        </provider>
 44
 45        <activity
-45-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/e5d672e47a6d1fca1956dd9eb280750e/transformed/ui-tooling/AndroidManifest.xml:23:9-25:39
+45-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d6f03f6390e4e9f2aee38ff82b9d1037/transformed/ui-tooling/AndroidManifest.xml:23:9-25:39
 46            android:name="androidx.compose.ui.tooling.PreviewActivity"
-46-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/e5d672e47a6d1fca1956dd9eb280750e/transformed/ui-tooling/AndroidManifest.xml:24:13-71
+46-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d6f03f6390e4e9f2aee38ff82b9d1037/transformed/ui-tooling/AndroidManifest.xml:24:13-71
 47            android:exported="true" />
-47-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/e5d672e47a6d1fca1956dd9eb280750e/transformed/ui-tooling/AndroidManifest.xml:25:13-36
+47-->[androidx.compose.ui:ui-tooling-android:1.9.3] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d6f03f6390e4e9f2aee38ff82b9d1037/transformed/ui-tooling/AndroidManifest.xml:25:13-36
 48
 49        <provider
-49-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+49-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
 50            android:name="androidx.startup.InitializationProvider"
-50-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+50-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
 51            android:authorities="com.brightly.kmpdatabasepoc.androidx-startup"
-51-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+51-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
 52            android:exported="false" >
-52-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+52-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
 53            <meta-data
-53-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+53-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
 54                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-54-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+54-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
 55                android:value="androidx.startup" />
-55-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/55d0e8c17878069d909837ac6e9b43a6/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+55-->[androidx.emoji2:emoji2:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/62b64c32b1c9f6d99d23d7f8e5a67f68/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
 56            <meta-data
-56-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d9287a9be67c52b1fe11337494bfb16f/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:29:13-31:52
+56-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/3f213db2a88e81fcad2279b6a2c1d39b/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:29:13-31:52
 57                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-57-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d9287a9be67c52b1fe11337494bfb16f/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:30:17-78
+57-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/3f213db2a88e81fcad2279b6a2c1d39b/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:30:17-78
 58                android:value="androidx.startup" />
-58-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/d9287a9be67c52b1fe11337494bfb16f/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:31:17-49
+58-->[androidx.lifecycle:lifecycle-process:2.9.4] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/3f213db2a88e81fcad2279b6a2c1d39b/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:31:17-49
 59            <meta-data
-59-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+59-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
 60                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-60-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+60-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
 61                android:value="androidx.startup" />
-61-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+61-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
 62        </provider>
 63
 64        <service
-64-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/b94c314fdf46db12a7a6068bd7b21e5b/transformed/room-runtime-release/AndroidManifest.xml:24:9-28:63
+64-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/f3df4e8443e12587a63a288c20b51bee/transformed/room-runtime-release/AndroidManifest.xml:24:9-28:63
 65            android:name="androidx.room.MultiInstanceInvalidationService"
-65-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/b94c314fdf46db12a7a6068bd7b21e5b/transformed/room-runtime-release/AndroidManifest.xml:25:13-74
+65-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/f3df4e8443e12587a63a288c20b51bee/transformed/room-runtime-release/AndroidManifest.xml:25:13-74
 66            android:directBootAware="true"
-66-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/b94c314fdf46db12a7a6068bd7b21e5b/transformed/room-runtime-release/AndroidManifest.xml:26:13-43
+66-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/f3df4e8443e12587a63a288c20b51bee/transformed/room-runtime-release/AndroidManifest.xml:26:13-43
 67            android:exported="false" />
-67-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/b94c314fdf46db12a7a6068bd7b21e5b/transformed/room-runtime-release/AndroidManifest.xml:27:13-37
+67-->[androidx.room:room-runtime-android:2.7.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/f3df4e8443e12587a63a288c20b51bee/transformed/room-runtime-release/AndroidManifest.xml:27:13-37
 68
 69        <receiver
-69-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+69-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
 70            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-70-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+70-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
 71            android:directBootAware="false"
-71-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+71-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
 72            android:enabled="true"
-72-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+72-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
 73            android:exported="true"
-73-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+73-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
 74            android:permission="android.permission.DUMP" >
-74-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+74-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
 75            <intent-filter>
-75-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+75-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
 76                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-76-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
-76-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+76-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+76-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
 77            </intent-filter>
 78            <intent-filter>
-78-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+78-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
 79                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
 80            </intent-filter>
 81            <intent-filter>
-81-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+81-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
 82                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-82-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
-82-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
 83            </intent-filter>
 84            <intent-filter>
-84-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+84-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
 85                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-85-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
-85-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/ffcbbfb125cb8f9c07b941977252bd4d/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/neerajsoni/.gradle/caches/8.14.3/transforms/6ecf7ef89045db43b14fd03654949b3c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
 86            </intent-filter>
 87        </receiver>
 88    </application>
